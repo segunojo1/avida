@@ -1,3 +1,4 @@
+import DreamboardWall from "@/components/dreamboard-wall";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 
@@ -44,6 +45,10 @@ export default function Home() {
               ))}
             </div>
           </div>
+        </div>
+
+        <div>
+          <DreamboardWall />
         </div>
       </main>
     </div>

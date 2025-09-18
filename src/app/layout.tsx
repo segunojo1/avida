@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`playfair-display antialiased py-[29px] px-6 min-h-screen `}
+        className={`playfair-display antialiased py-[29px] px-6  `}
       >
         <Navbar />
         {children}
