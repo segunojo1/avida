@@ -35,7 +35,7 @@ export default function Home() {
             <p className="text-[13px]/[16px] font-normal">Filter Search:</p>
             <div className=" gap-2 flex font-medium text-[13px]/[18px]">
               {SEARCH_FILTERS.map(({tag, color}: {tag: string, color: string}) => (
-                <div className={`cursor-pointer hover:scale-105 transition-1000 py-[7px] px-4 rounded-[64px] bg-[#F1A62D]`} style={
+                <div key={tag} className={`cursor-pointer hover:scale-105 transition-1000 py-[7px] px-4 rounded-[64px] bg-[#F1A62D]`} style={
                   {
                     backgroundColor: color
                   }
