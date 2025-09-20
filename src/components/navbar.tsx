@@ -18,7 +18,7 @@ const Navbar = () => {
           <li className="italic">
             <Button className="py-1.5 px-2.5 font-medium bg-[#BFABEA] hover:bg-[#a88ce5] rounded-[90px] shadow-[0px_0px_0px_1px_#EBEBEB,0px_1px_3px_0px_#8F8F8F33,inset_0px_-2.4px_0px_0px_#0000001A]">
               Write on the wall
-            </Button>
+            </Button> 
           </li>
         </ul>
       </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/navbar";
+import NextTopLoader from "nextjs-toploader";
 
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export default function RootLayout({
       <body
         className={`playfair-display antialiased py-[29px] px-6  `}
       >
+        <NextTopLoader />
         <Navbar />
         {children}
         

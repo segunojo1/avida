@@ -1,8 +1,9 @@
-import DreamboardWall from "@/components/dreamboard-wall";
-import SearchEntries from "@/components/search-entries";
+import DreamboardWall from '@/components/dreamboard-wall'
+import SearchEntries from '@/components/search-entries'
 import { sampleDreamcards } from '@/constants'
+import React from 'react'
 
-export default function Home() {
+const Wall = () => {
   return (
     <div className="mt-[22px]">
       <main
@@ -17,5 +18,7 @@ export default function Home() {
         </div>
       </main>
     </div>
-  );
+  )
 }
+
+export default Wall
