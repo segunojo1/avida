@@ -47,8 +47,8 @@ const DreamboardCard = ({ card, icon, message, className = '' }: Props) => {
         <Image 
           src={icon}
           alt=""
-          width={63}
-          height={63}
+          width={40}
+          height={40}
           className="drop-shadow-lg"
         />
       </div>
@@ -59,7 +59,6 @@ const DreamboardCard = ({ card, icon, message, className = '' }: Props) => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {/* Card Background */}
         <div className="absolute inset-0 w-full h-full">
           <Image 
             src={`/assets/${card}.png`}

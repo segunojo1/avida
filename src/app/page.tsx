@@ -47,7 +47,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div>
+        <div className="px-[13px]">
           <DreamboardWall />
         </div>
       </main>

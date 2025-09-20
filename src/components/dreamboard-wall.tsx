@@ -2,6 +2,7 @@
 import { sampleDreamcards } from '@/constants'
 import React, { useMemo } from 'react'
 import DreamboardCard from './dreamboard-card'
+import Paperfold from './paperfold'
 
 // Card size configuration
 const CARD_SIZES = {
@@ -47,7 +48,7 @@ const DreamboardWall = () => {
 
   return (
     <div className='bg-gradient-to-b rounded-4xl from-[#F3EEFC] to-[#FFFFFF00] w-full min-h-[160vh]  h-full'>
-      <div className='py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl min-h-[160vh] mx-auto'>
+      <div className='py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-9 max-w-7xl min-h-[160vh] mx-auto'>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 auto-rows-[0]'>
           {masonryLayout.map((column, colIndex) => (
             <div key={`column-${colIndex}`} className='flex flex-col gap-6'>
@@ -63,6 +64,8 @@ const DreamboardWall = () => {
           ))}
         </div>
       </div>
+
+      <Paperfold />
     </div>
   )
 }
