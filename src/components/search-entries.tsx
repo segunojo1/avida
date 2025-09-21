@@ -55,17 +55,20 @@ const SearchEntries = ({ title, description }: Props) => {
         />
       </div>
       <div className="flex flex-col w-full max-w-4xl mt-8 px-4 inter-font">
-        <p className="text-[13px]/[16px] font-normal mb-3 text-center">Filter by category:</p>
+        <p className="text-[13px]/[16px] font-normal mb-3 text-center">
+          Filter by category:
+        </p>
         <div className="flex flex-wrap gap-2 justify-center">
           {CATEGORIES.map(({ tag, color }) => (
             <button
               key={tag}
               className={`cursor-pointer hover:scale-105 transition-all duration-200 py-[7px] px-4 rounded-[64px] text-sm font-medium whitespace-nowrap ${
-                activeCategory === tag ? 'ring-2 ring-offset-2 ring-opacity-50' : ''
+                activeCategory === tag
+                  ? "ring-2 ring-offset-2 ring-opacity-50"
+                  : ""
               }`}
               style={{
                 backgroundColor: color,
-                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
               }}
               onClick={() => setActiveCategory(tag)}
             >

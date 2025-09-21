@@ -35,15 +35,13 @@ export const createMasonryLayout = (items: any[], columns: number) => {
 const DreamboardWall = ({ cards }: { cards: DreamCard[] }) => {
   const { searchQuery, categoryFilter } = useAppStore();
 
-  // Filter cards based on search query and category
   const filteredCards = useMemo(() => {
     return cards.filter(card => {
-      // If there's a category filter and it doesn't match, filter out
+
       if (categoryFilter && card.category !== categoryFilter) {
         return false;
       }
       
-      // If there's a search query, check if it matches any field
       if (searchQuery.trim()) {
         const query = searchQuery.toLowerCase().trim();
         return (
@@ -62,12 +60,11 @@ const DreamboardWall = ({ cards }: { cards: DreamCard[] }) => {
     return [...filteredCards].sort(() => Math.random() - 0.5);
   }, [filteredCards]);
   
-  // Create masonry layout with 3 columns
   const columns = 3;
   const masonryLayout = useMemo(
     () => createMasonryLayout(shuffledCards, columns),
     [shuffledCards]
-  );
+  ); 
 
   return (
     <div className='bg-gradient-to-b rounded-4xl from-[#F3EEFC] to-[#FFFFFF00] w-full min-h-[160vh] h-full'>

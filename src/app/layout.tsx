@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import NextTopLoader from "nextjs-toploader";
+import CreateCardModal from "@/components/modals/create-card-modal";
 
 
 export const metadata: Metadata = {
@@ -22,7 +23,8 @@ export default function RootLayout({
         <NextTopLoader />
         <Navbar />
         {children}
-        
+                    <CreateCardModal />
+
       </body>
     </html>
   );
