@@ -3,7 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import NextTopLoader from "nextjs-toploader";
 import CreateCardModal from "@/components/modals/create-card-modal";
-
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Avida",
@@ -17,14 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`playfair-display antialiased py-[29px] px-6  `}
-      >
+      <body className={`playfair-display antialiased py-[29px] px-6  `}>
         <NextTopLoader />
         <Navbar />
         {children}
-                    <CreateCardModal />
-
+        <Toaster />
       </body>
     </html>
   );

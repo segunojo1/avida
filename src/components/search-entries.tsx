@@ -72,7 +72,7 @@ const SearchEntries = ({ title, description }: Props) => {
               }}
               onClick={() => setActiveCategory(tag)}
             >
-              {tag}
+              {tag} 
             </button>
           ))}
         </div>
