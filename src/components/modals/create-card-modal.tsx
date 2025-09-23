@@ -31,6 +31,7 @@ import {
 import { toast } from "sonner";
 import { useAppStore } from "@/store/app.store";
 import { fetchAllCards, fetchCards } from "@/services/dreamcard.service";
+import { useRouter } from "next/navigation";
 
 const CreateCardModal = () => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -57,6 +58,7 @@ const CreateCardModal = () => {
     { tag: "Finance", color: "#FFD700" },
     { tag: "Relationships", color: "#FFA07A" },
   ];
+  const router = useRouter();
   const form = useForm<z.infer<typeof createDreamSchema>>({
     resolver: zodResolver(createDreamSchema),
     defaultValues: {
@@ -81,6 +83,7 @@ const CreateCardModal = () => {
       setLoading(false);
       toast("Dream created ✅");
       setOpen(false);
+      router.push("/wall");
       setLoadingFetchCards(true);
       const [res1, res2] = await Promise.all([fetchCards(), fetchAllCards()]);
       setMyEntries(res1);
