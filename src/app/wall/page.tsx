@@ -3,13 +3,14 @@ import Background from "@/components/background";
 import DreamboardWall from "@/components/dreamboard-wall";
 import SearchEntries from "@/components/search-entries";
 import { sampleDreamcards } from "@/constants";
-import { fetchCards } from "@/services/dreamcard.service";
+import { fetchAllCards, fetchCards } from "@/services/dreamcard.service";
 import { useAppStore } from "@/store/app.store";
 import { useEffect, useRef } from "react";
 
 export default function Page() {
   const glowRef = useRef<HTMLDivElement>(null);
-  const {setLoadingFetchCards, setMyEntries} = useAppStore();
+  const { setLoadingFetchCards, loadingFetchCards, setMyEntries, allEntries, setAllEntries } =
+    useAppStore();
 
   useEffect(() => {
     const container = document.getElementById("glow-container");
@@ -29,22 +30,21 @@ export default function Page() {
   }, []);
 
   useEffect(() => {
-      
-      const getCards = async () => {
-        try {
-          setLoadingFetchCards(true);
-          const res = await fetchCards();
-          setMyEntries(res);
-          console.log(res);
-          
-          setLoadingFetchCards(false);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-  
-      getCards();
-    }, []);
+    const getCards = async () => {
+      try {
+        setLoadingFetchCards(true);
+        const res = await fetchAllCards();
+        setAllEntries(res);
+        console.log(res);
+
+        setLoadingFetchCards(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getCards();
+  }, []);
 
   return (
     <main className="relative min-h-screen mt-[22px]">
@@ -55,11 +55,20 @@ export default function Page() {
             description="Search preferred themes, tags, vibes or one of the trending ones......"
           />
           <div className="px-[13px]">
-            <DreamboardWall cards={sampleDreamcards} />
+            {loadingFetchCards ? (
+              <p className="text-center text-sm text-gray-500 py-10">
+                Loading dreamcards...
+              </p>
+            ) : allEntries?.length > 0 ? (
+              <DreamboardWall cards={allEntries} />
+            ) : (
+              <p className="text-center text-sm text-gray-400 py-10">
+                No dreamcards available yet ✨
+              </p>
+            )}
           </div>
         </Background>
       </main>
-
     </main>
   );
 }

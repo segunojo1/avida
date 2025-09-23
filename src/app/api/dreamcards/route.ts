@@ -14,9 +14,9 @@ const createDreamSchema = z.object({
 export async function POST(req: Request) {
   const session = await auth();
 
-  if (!session?.user) {
-    return NextResponse.json({ error: "User unauthorized" }, { status: 401 });
-  }
+//   if (!session?.user) {
+//     return NextResponse.json({ error: "User unauthorized" }, { status: 401 });
+//   }
 
   const body = await req.json();
 
@@ -38,7 +38,7 @@ export async function POST(req: Request) {
       message,
       tags,
       vibe,
-      userId: session.user.id,
+      userId: session?.user?.id || null,
     })
     .returning();
   console.log(dreams);

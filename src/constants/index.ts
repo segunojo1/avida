@@ -6,7 +6,7 @@ export interface DreamCard {
   createdAt: number;
   card: 'green' | 'yellow' | 'blue' | 'mine';
   icon: string;
-  category?: string;
+  vibe?: string;
 };
 
 export const categories = [
@@ -31,7 +31,7 @@ export const sampleDreamcards: DreamCard[] = [
     createdAt: new Date('2024-01-15').getTime(),
     card: "green",
     icon: "/assets/card-icons/fire.svg",
-    category: "Adventure"
+    vibe: "Adventure"
   },
   {
     id: 2,
@@ -40,7 +40,7 @@ export const sampleDreamcards: DreamCard[] = [
     createdAt: new Date('2024-02-20').getTime(),
     card: "blue",
     icon: "/assets/card-icons/wave.svg",
-    category: "Adventure"
+    vibe: "Adventure"
   },
   
   // Career
@@ -51,7 +51,7 @@ export const sampleDreamcards: DreamCard[] = [
     createdAt: new Date('2024-03-05').getTime(),
     card: "yellow",
     icon: "/assets/card-icons/board.svg",
-    category: "Career"
+    vibe: "Career"
   },
   {
     id: 4,
@@ -60,7 +60,7 @@ export const sampleDreamcards: DreamCard[] = [
     createdAt: new Date('2024-01-30').getTime(),
     card: "yellow",
     icon: "/assets/card-icons/magic.svg",
-    category: "Career"
+    vibe: "Career"
   },
   
   // Travel
@@ -71,7 +71,7 @@ export const sampleDreamcards: DreamCard[] = [
     createdAt: new Date('2024-02-15').getTime(),
     card: "yellow",
     icon: "/assets/card-icons/peace.svg",
-    category: "Travel"
+    vibe: "Travel"
   },
   {
     id: 6,
@@ -80,7 +80,7 @@ export const sampleDreamcards: DreamCard[] = [
     createdAt: new Date('2024-03-01').getTime(),
     card: "blue",
     icon: "/assets/card-icons/wave.svg",
-    category: "Travel"
+    vibe: "Travel"
   },
   
   // Personal Growth
@@ -91,7 +91,7 @@ export const sampleDreamcards: DreamCard[] = [
     createdAt: new Date('2024-02-10').getTime(),
     card: "green",
     icon: "/assets/card-icons/heart.svg",
-    category: "Personal Growth"
+    vibe: "Personal Growth"
   },
   {
     id: 8,
@@ -100,7 +100,7 @@ export const sampleDreamcards: DreamCard[] = [
     createdAt: new Date('2024-01-25').getTime(),
     card: "yellow",
     icon: "/assets/card-icons/heart-eyes.svg",
-    category: "Personal Growth"
+    vibe: "Personal Growth"
   },
   
   // Philanthropy
@@ -111,7 +111,7 @@ export const sampleDreamcards: DreamCard[] = [
     createdAt: new Date('2024-03-10').getTime(),
     card: "yellow",
     icon: "/assets/card-icons/love.svg",
-    category: "Philanthropy"
+    vibe: "Philanthropy"
   },
   {
     id: 10,
@@ -120,7 +120,7 @@ export const sampleDreamcards: DreamCard[] = [
     createdAt: new Date('2024-02-25').getTime(),
     card: "yellow",
     icon: "/assets/card-icons/board.svg",
-    category: "Philanthropy"
+    vibe: "Philanthropy"
   },
   
   // Health & Wellness
@@ -131,7 +131,7 @@ export const sampleDreamcards: DreamCard[] = [
     createdAt: new Date('2024-01-20').getTime(),
     card: "yellow",
     icon: "/assets/card-icons/heart.svg",
-    category: "Health"
+    vibe: "Health"
   },
   
   // Family
@@ -142,7 +142,7 @@ export const sampleDreamcards: DreamCard[] = [
     createdAt: new Date('2024-03-05').getTime(),
     card: "blue",
     icon: "/assets/card-icons/heart-eyes.svg",
-    category: "Family"
+    vibe: "Family"
   },
   
   // Education
@@ -153,7 +153,7 @@ export const sampleDreamcards: DreamCard[] = [
     createdAt: new Date('2024-02-18').getTime(),
     card: "yellow",
     icon: "/assets/card-icons/magic.svg",
-    category: "Education"
+    vibe: "Education"
   },
   
   // Finance
@@ -164,7 +164,7 @@ export const sampleDreamcards: DreamCard[] = [
     createdAt: new Date('2024-01-28').getTime(),
     card: "green",
     icon: "/assets/card-icons/board.svg",
-    category: "Finance"
+    vibe: "Finance"
   },
   
   // Relationships
@@ -175,7 +175,7 @@ export const sampleDreamcards: DreamCard[] = [
     createdAt: new Date('2024-03-08').getTime(),
     card: "yellow",
     icon: "/assets/card-icons/love.svg",
-    category: "Relationships"
+    vibe: "Relationships"
   }
 ];
 
@@ -212,7 +212,7 @@ export const myEntriesDreamcards: DreamCard[] = [
     createdAt: new Date('2024-01-15').getTime(),
     card: "mine",
     icon: "/assets/card-icons/fire.svg",
-    category: "Adventure"
+    vibe: "Adventure"
   },
   {
     id: 2,
@@ -221,7 +221,7 @@ export const myEntriesDreamcards: DreamCard[] = [
     createdAt: new Date('2024-02-20').getTime(),
     card: "mine",
     icon: "/assets/card-icons/wave.svg",
-    category: "Adventure"
+    vibe: "Adventure"
   },
   {
     id: 3,
@@ -230,7 +230,7 @@ export const myEntriesDreamcards: DreamCard[] = [
     createdAt: new Date('2024-03-05').getTime(),
     card: "mine",
     icon: "/assets/card-icons/board.svg",
-    category: "Career"
+    vibe: "Career"
   },
   {
     id: 4,
@@ -239,7 +239,7 @@ export const myEntriesDreamcards: DreamCard[] = [
     createdAt: new Date('2024-01-30').getTime(),
     card: "mine",
     icon: "/assets/card-icons/magic.svg",
-    category: "Career"
+    vibe: "Career"
   },
   {
     id: 5,
@@ -248,7 +248,7 @@ export const myEntriesDreamcards: DreamCard[] = [
     createdAt: new Date('2024-02-15').getTime(),
     card: "mine",
     icon: "/assets/card-icons/peace.svg",
-    category: "Travel"
+    vibe: "Travel"
   },
   {
     id: 6,
@@ -257,7 +257,7 @@ export const myEntriesDreamcards: DreamCard[] = [
     createdAt: new Date('2024-03-01').getTime(),
     card: "mine",
     icon: "/assets/card-icons/wave.svg",
-    category: "Travel"
+    vibe: "Travel"
   },
   {
     id: 7,
@@ -266,7 +266,7 @@ export const myEntriesDreamcards: DreamCard[] = [
     createdAt: new Date('2024-02-10').getTime(),
     card: "mine",
     icon: "/assets/card-icons/heart.svg",
-    category: "Personal Growth"
+    vibe: "Personal Growth"
   },
   {
     id: 8,
@@ -275,7 +275,7 @@ export const myEntriesDreamcards: DreamCard[] = [
     createdAt: new Date('2024-01-25').getTime(),
     card: "mine",
     icon: "/assets/card-icons/heart-eyes.svg",
-    category: "Personal Growth"
+    vibe: "Personal Growth"
   },
   {
     id: 9,
@@ -284,7 +284,7 @@ export const myEntriesDreamcards: DreamCard[] = [
     createdAt: new Date('2024-03-10').getTime(),
     card: "mine",
     icon: "/assets/card-icons/love.svg",
-    category: "Philanthropy"
+    vibe: "Philanthropy"
   },
   {
     id: 10,
@@ -293,7 +293,7 @@ export const myEntriesDreamcards: DreamCard[] = [
     createdAt: new Date('2024-02-25').getTime(),
     card: "mine",
     icon: "/assets/card-icons/board.svg",
-    category: "Philanthropy"
+    vibe: "Philanthropy"
   },
   {
     id: 11,
@@ -302,7 +302,7 @@ export const myEntriesDreamcards: DreamCard[] = [
     createdAt: new Date('2024-01-20').getTime(),
     card: "mine",
     icon: "/assets/card-icons/heart.svg",
-    category: "Health"
+    vibe: "Health"
   },
   {
     id: 12,
@@ -311,7 +311,7 @@ export const myEntriesDreamcards: DreamCard[] = [
     createdAt: new Date('2024-03-05').getTime(),
     card: "mine",
     icon: "/assets/card-icons/heart-eyes.svg",
-    category: "Family"
+    vibe: "Family"
   },
   {
     id: 13,
@@ -320,7 +320,7 @@ export const myEntriesDreamcards: DreamCard[] = [
     createdAt: new Date('2024-02-18').getTime(),
     card: "mine",
     icon: "/assets/card-icons/magic.svg",
-    category: "Education"
+    vibe: "Education"
   },
   {
     id: 14,
@@ -329,7 +329,7 @@ export const myEntriesDreamcards: DreamCard[] = [
     createdAt: new Date('2024-01-28').getTime(),
     card: "mine",
     icon: "/assets/card-icons/board.svg",
-    category: "Finance"
+    vibe: "Finance"
   },
   {
     id: 15,
@@ -338,6 +338,6 @@ export const myEntriesDreamcards: DreamCard[] = [
     createdAt: new Date('2024-03-08').getTime(),
     card: "mine",
     icon: "/assets/card-icons/love.svg",
-    category: "Relationships"
+    vibe: "Relationships"
   }
 ];

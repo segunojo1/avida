@@ -33,6 +33,9 @@ const CARD_CONTENT = {
 } as const;
 
 const CARD_TYPES = ["green", "yellow", "blue", "mine"] as const;
+
+const CARD_TYPES_PUBLIC = ["green", "yellow", "blue"] as const;
+
 const ICONS = [
   "/assets/card-icons/fire.svg",
   "/assets/card-icons/wave.svg",
@@ -49,16 +52,13 @@ const DreamboardCard = ({ message, className = "" }: Props) => {
   const [isHovered, setIsHovered] = useState(false);
   const pathname = usePathname();
 
-  // Randomly pick card & icon once (so it doesn’t change on every re-render)
-  let card;
-  if (pathname == "/my-entries") {
-    
-    card = "mine"
-  } else{
-    const [card] = useState<typeof CARD_TYPES[number]>(
-      () => CARD_TYPES[Math.floor(Math.random() * CARD_TYPES.length)]
-    );
-  }
+  const initialCard: typeof CARD_TYPES[number] =
+  pathname === "/my-entries"
+    ? "mine"
+    : CARD_TYPES_PUBLIC[Math.floor(Math.random() * CARD_TYPES_PUBLIC.length)];
+
+const [card] = useState<typeof CARD_TYPES[number]>(initialCard);
+
   const [icon] = useState<string>(
     () => ICONS[Math.floor(Math.random() * ICONS.length)]
   );
@@ -89,12 +89,12 @@ const DreamboardCard = ({ message, className = "" }: Props) => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="absolute inset-0 w-full h-full">
+        <div className="absolute inset-0 w-full h-full rounded-2xl">
           <Image
             src={`/assets/${card}.png`}
             alt="dreamboard card"
             fill
-            className={`object-cover transition-transform duration-500 ${
+            className={`object-cover transition-transform duration-500 rounded-2xl ${
               isHovered ? "scale-105" : "scale-100"
             }`}
             sizes="(max-width: 768px) 100vw, 368px"
@@ -103,7 +103,7 @@ const DreamboardCard = ({ message, className = "" }: Props) => {
         </div>
 
         <div
-          className="mt-auto transition-all duration-300"
+          className="mt-auto transition-all duration-300 rounded-2xl"
           style={{
             ...cardStyles.text,
             transform: isHovered ? "translateY(-0.5rem)" : "translateY(0)",

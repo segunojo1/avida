@@ -6,7 +6,8 @@ interface AppStoreTypes {
   searchQuery: string;
   categoryFilter: string;
   loadingFetchCards: boolean;
-  
+  allEntries: DreamCard[];
+  setAllEntries: (allEntries: DreamCard[]) => void;
   setLoadingFetchCards: (loadingFetchCards: boolean) => void;
   setSearchQuery: (searchQuery: string) => void;
   setCategoryFilter: (category: string) => void;
@@ -18,6 +19,8 @@ export const useAppStore = create<AppStoreTypes>((set) => ({
   searchQuery: "",
   categoryFilter: "",
   loadingFetchCards: false,
+  allEntries: [],
+  setAllEntries: (allEntries) => set({ allEntries }),
   setLoadingFetchCards: (loadingFetchCards) => set({ loadingFetchCards }),
   setSearchQuery: (searchQuery) => set({ searchQuery }),
   setCategoryFilter: (categoryFilter) => set({ categoryFilter }),

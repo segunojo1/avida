@@ -10,6 +10,7 @@ import {
 import React from "react";
 import { signIn } from "../../../auth";
 import SignIn from "@/components/sign-in";
+import Link from "next/link";
 
 const Auth = () => {
   return (
@@ -25,8 +26,10 @@ const Auth = () => {
             <p>hi</p>
         </CardContent> */}
 
-        <CardFooter>
+        <CardFooter className="flex flex-col items-center gap-2">
           <SignIn />
+          <p>OR</p>
+          <Link href="/wall" className="min-w-full flex items-center justify-center font-semibold px-8 py-2 rounded-md bg-black text-white">Sign in as guest</Link>
         </CardFooter>
       </Card>
     </div>

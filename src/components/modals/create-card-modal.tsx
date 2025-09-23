@@ -12,7 +12,7 @@ import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 import TagPill from "../tag-pill";
-import { Plus, X } from "lucide-react";
+import { Loader, Plus, X } from "lucide-react";
 import VibePill from "../vibe-pill";
 import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
@@ -30,7 +30,7 @@ import {
 } from "@/components/ui/form";
 import { toast } from "sonner";
 import { useAppStore } from "@/store/app.store";
-import { fetchCards } from "@/services/dreamcard.service";
+import { fetchAllCards, fetchCards } from "@/services/dreamcard.service";
 
 const CreateCardModal = () => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -42,27 +42,20 @@ const CreateCardModal = () => {
     "Dramatic",
     "Inspiring",
   ]);
-  const [selectedVibe, setSelectedVibe] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   const [open, setOpen] = useState(false);
   const tagInputRef = useRef<HTMLInputElement>(null);
-  const { setLoadingFetchCards, setMyEntries } = useAppStore();
+  const { setLoadingFetchCards, setMyEntries, setAllEntries } = useAppStore();
   const VIBE_TAGS = [
-    {
-      tag: "Funny",
-      color: "#F1A62D",
-    },
-    {
-      tag: "Wholesome",
-      color: "#C7B9FF",
-    },
-    {
-      tag: "Challenging",
-      color: "#FFEBA6",
-    },
-    {
-      tag: "Inspiring",
-      color: "#CFFF98",
-    },
+    { tag: "Adventure", color: "#C7B9FF" },
+    { tag: "Career", color: "#FFEBA6" },
+    { tag: "Travel", color: "#CFFF98" },
+    { tag: "Personal Growth", color: "#FFB6C1" },
+    { tag: "Philanthropy", color: "#98FB98" },
+    { tag: "Health", color: "#87CEEB" },
+    { tag: "Education", color: "#DDA0DD" },
+    { tag: "Finance", color: "#FFD700" },
+    { tag: "Relationships", color: "#FFA07A" },
   ];
   const form = useForm<z.infer<typeof createDreamSchema>>({
     resolver: zodResolver(createDreamSchema),
@@ -76,7 +69,7 @@ const CreateCardModal = () => {
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof createDreamSchema>) {
     console.log(values);
-
+    setLoading(true);
     const res = await fetch("/api/dreamcards", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -85,11 +78,13 @@ const CreateCardModal = () => {
     console.log(res);
 
     if (res.ok) {
+      setLoading(false);
       toast("Dream created ✅");
       setOpen(false);
       setLoadingFetchCards(true);
-      const res = await fetchCards();
-      setMyEntries(res);
+      const [res1, res2] = await Promise.all([fetchCards(), fetchAllCards()]);
+      setMyEntries(res1);
+      setAllEntries(res2);
       setLoadingFetchCards(false);
     } else {
       const err = await res.json();
@@ -269,7 +264,7 @@ const CreateCardModal = () => {
                       What&apos;s the vibe?
                     </FormLabel>
                     <FormControl>
-                      <div className="flex gap-2 h-fit">
+                      <div className="flex gap-2 flex-wrap items-center jusc h-fit">
                         {VIBE_TAGS.map(({ tag, color }) => (
                           <VibePill
                             key={tag}
@@ -294,7 +289,7 @@ const CreateCardModal = () => {
                 type="submit"
                 className="py-3 min-w-full  px-2.5 text-black text-[16px]/[24px] italic font-medium bg-[#BFABEA] hover:bg-[#a88ce5] rounded-[90px] inter-font shadow-[0px_0px_0px_1px_#EBEBEB,0px_1px_3px_0px_#8F8F8F33,inset_0px_-2.4px_0px_0px_#0000001A]"
               >
-                Write on the wall
+                {loading && <Loader className="animate-spin"/> }Write on the wall
               </Button>
             </form>
           </Form>
