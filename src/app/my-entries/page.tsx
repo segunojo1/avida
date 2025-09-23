@@ -8,8 +8,6 @@ import { useAppStore } from "@/store/app.store";
 import React, { useEffect, useState } from "react";
 
 const MyEntries = () => {
-  const [cards, setCards] = useState([]);
-  const [loading, setLoading] = useState(true);
   const {loadingFetchCards, setLoadingFetchCards, myEntries, setMyEntries} = useAppStore();
 
   useEffect(() => {
