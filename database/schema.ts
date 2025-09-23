@@ -13,7 +13,7 @@ export const dreamCardsTable = pgTable("dreamcards", {
   message: varchar("message", { length: 200 }).notNull(),
   tags: text("tags").array().notNull(),
   vibe: varchar("vibe", { length: 100 }).notNull(),
-   userId: uuid("user_id")
+  userId: uuid("user_id")
     .notNull()
     .references(() => usersTable.id, { onDelete: "cascade" }),
   createdAt: timestamp("created_at").defaultNow().notNull(),

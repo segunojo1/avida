@@ -15,18 +15,16 @@ export const createMasonryLayout = (items: any[], columns: number) => {
   const columnHeights = new Array(columns).fill(0)
   const columnItems = new Array(columns).fill(0).map(() => [] as any[])
   
-  items.forEach((item) => {
-    // Get the height based on card type
+  items.forEach((item) => {    
     const height = item.card === 'yellow' ? 215 : item.card === 'blue' ? 400 : 500
     
-    // Find the shortest column
     const shortestColumnIndex = columnHeights.indexOf(Math.min(...columnHeights))
     
     // Add item to the shortest column
     columnItems[shortestColumnIndex].push(item)
     
     // Update column height
-    columnHeights[shortestColumnIndex] += height + 24 // 24px is the gap (gap-6 = 1.5rem = 24px)
+    columnHeights[shortestColumnIndex] += height + 24
   })
   
   return columnItems
@@ -46,7 +44,6 @@ const DreamboardWall = ({ cards }: { cards: DreamCard[] }) => {
         const query = searchQuery.toLowerCase().trim();
         return (
           card.message.toLowerCase().includes(query) || 
-          card.author.toLowerCase().includes(query) ||
           card.category?.toLowerCase().includes(query)
         );
       }

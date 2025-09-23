@@ -29,6 +29,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { toast } from "sonner";
+import { useAppStore } from "@/store/app.store";
+import { fetchCards } from "@/services/dreamcard.service";
 
 const CreateCardModal = () => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -41,7 +43,9 @@ const CreateCardModal = () => {
     "Inspiring",
   ]);
   const [selectedVibe, setSelectedVibe] = useState<string>("");
+  const [open, setOpen] = useState(false);
   const tagInputRef = useRef<HTMLInputElement>(null);
+  const { setLoadingFetchCards, setMyEntries } = useAppStore();
   const VIBE_TAGS = [
     {
       tag: "Funny",
@@ -70,14 +74,33 @@ const CreateCardModal = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof createDreamSchema>) {
-    toast("submitted")
+  async function onSubmit(values: z.infer<typeof createDreamSchema>) {
     console.log(values);
+
+    const res = await fetch("/api/dreamcards", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
+    });
+    console.log(res);
+
+    if (res.ok) {
+      toast("Dream created ✅");
+      setOpen(false);
+      setLoadingFetchCards(true);
+      const res = await fetchCards();
+      setMyEntries(res);
+      setLoadingFetchCards(false);
+    } else {
+      const err = await res.json();
+      toast.error(err.error || "Something went wrong");
+      setOpen(false);
+    }
   }
 
   return (
     <div className="inter-font">
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger>
           <Button className="py-1.5 px-2.5 italic font-medium bg-[#BFABEA] hover:bg-[#a88ce5] rounded-[90px] inter-font shadow-[0px_0px_0px_1px_#EBEBEB,0px_1px_3px_0px_#8F8F8F33,inset_0px_-2.4px_0px_0px_#0000001A]">
             Write on the wall

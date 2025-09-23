@@ -2,7 +2,7 @@
 export interface DreamCard {
   id: number;
   message: string;
-  author: string;
+  author?: string;
   createdAt: number;
   card: 'green' | 'yellow' | 'blue' | 'mine';
   icon: string;

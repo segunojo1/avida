@@ -8,6 +8,13 @@
       "when": 1758560759969,
       "tag": "0000_thin_vanisher",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1758565167585,
+      "tag": "0001_lowly_newton_destine",
+      "breakpoints": true
     }
   ]
 }

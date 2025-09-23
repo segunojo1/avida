@@ -3,10 +3,13 @@ import Background from "@/components/background";
 import DreamboardWall from "@/components/dreamboard-wall";
 import SearchEntries from "@/components/search-entries";
 import { sampleDreamcards } from "@/constants";
+import { fetchCards } from "@/services/dreamcard.service";
+import { useAppStore } from "@/store/app.store";
 import { useEffect, useRef } from "react";
 
 export default function Page() {
   const glowRef = useRef<HTMLDivElement>(null);
+  const {setLoadingFetchCards, setMyEntries} = useAppStore();
 
   useEffect(() => {
     const container = document.getElementById("glow-container");
@@ -24,6 +27,24 @@ export default function Page() {
     container?.addEventListener("mousemove", handleMouseMove);
     return () => container?.removeEventListener("mousemove", handleMouseMove);
   }, []);
+
+  useEffect(() => {
+      
+      const getCards = async () => {
+        try {
+          setLoadingFetchCards(true);
+          const res = await fetchCards();
+          setMyEntries(res);
+          console.log(res);
+          
+          setLoadingFetchCards(false);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+  
+      getCards();
+    }, []);
 
   return (
     <main className="relative min-h-screen mt-[22px]">

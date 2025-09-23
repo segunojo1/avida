@@ -1,14 +1,14 @@
 "use client";
+
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import React, { useRef, useEffect, useState } from "react";
 
 interface Props {
   id: number;
   message: string;
-  author: string;
+  author?: string;
   createdAt: number;
-  card: "green" | "yellow" | "blue" | "mine";
-  icon: string;
   className?: string;
 }
 
@@ -30,13 +30,39 @@ const CARD_CONTENT = {
     icon: { top: "1.5rem", left: "1.5rem" },
     text: { padding: "2rem 2rem 2rem" },
   },
-};
+} as const;
 
-const DreamboardCard = ({ card, icon, message, className = "" }: Props) => {
+const CARD_TYPES = ["green", "yellow", "blue", "mine"] as const;
+const ICONS = [
+  "/assets/card-icons/fire.svg",
+  "/assets/card-icons/wave.svg",
+  "/assets/card-icons/board.svg",
+  "/assets/card-icons/magic.svg",
+  "/assets/card-icons/peace.svg",
+  "/assets/card-icons/heart-eyes.svg",
+  "/assets/card-icons/heart.svg",
+  "/assets/card-icons/love.svg",
+];
+
+const DreamboardCard = ({ message, className = "" }: Props) => {
   const textRef = useRef<HTMLParagraphElement>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const pathname = usePathname();
 
-  // Get styles based on card type
+  // Randomly pick card & icon once (so it doesn’t change on every re-render)
+  let card;
+  if (pathname == "/my-entries") {
+    
+    card = "mine"
+  } else{
+    const [card] = useState<typeof CARD_TYPES[number]>(
+      () => CARD_TYPES[Math.floor(Math.random() * CARD_TYPES.length)]
+    );
+  }
+  const [icon] = useState<string>(
+    () => ICONS[Math.floor(Math.random() * ICONS.length)]
+  );
+
   const cardStyles = CARD_CONTENT[card];
 
   return (
@@ -50,7 +76,7 @@ const DreamboardCard = ({ card, icon, message, className = "" }: Props) => {
         >
           <Image
             src={icon}
-            alt=""
+            alt="icon"
             width={40}
             height={40}
             className="drop-shadow-lg"
@@ -58,7 +84,6 @@ const DreamboardCard = ({ card, icon, message, className = "" }: Props) => {
         </div>
       )}
 
-      {/* Card Container */}
       <div
         className={`relative w-full h-full overflow-hidden caveat-font rounded-2xl transition-all duration-300 ${className}`}
         onMouseEnter={() => setIsHovered(true)}
@@ -77,9 +102,8 @@ const DreamboardCard = ({ card, icon, message, className = "" }: Props) => {
           />
         </div>
 
-        {/* Message */}
         <div
-          className="mt-auto transition-all duration-300 "
+          className="mt-auto transition-all duration-300"
           style={{
             ...cardStyles.text,
             transform: isHovered ? "translateY(-0.5rem)" : "translateY(0)",
